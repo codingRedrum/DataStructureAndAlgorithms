@@ -9,7 +9,7 @@ constexpr std::size_t arraySize(T (&array)[N]) noexcept
 }
 
 template <typename T, std::size_t N>
-constexpr bool checkSameLetter(T (&array)[N]) noexcept
+constexpr const char* checkSameLetter(T (&array)[N]) noexcept
 {
     constexpr std::size_t arrSize { arraySize(array) };
 
@@ -22,18 +22,17 @@ constexpr bool checkSameLetter(T (&array)[N]) noexcept
             {
                 val++;
                     if (val == 2)
-                        return true;
+                        return "Word has min 2 same letters \n";
             }
         }
     }
-       return false;
+       return "Word does not have same letter \n";
 }
 
 int 
 main(int argc, char** argv)
 {
-    const bool result = checkSameLetter(arrayCompileTime);
-    std::cout << result << std::endl;
+    printf("%s \n", checkSameLetter(arrayCompileTime));
 
     return 0;
 }
